@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>新疆环线旅行手册 · 2026.10.22–10.31</title>
+<style>
+  :root{ --bg:#f4f1ea; --card:#fffdf7; --ink:#2a2722; --muted:#7a7369; --line:#e7e1d4; --accent:#c0392b; --shadow:0 6px 22px rgba(60,50,30,.10); --chip:#efe9da;
+    --map-ink:#1f3b57; --lake:#bcd7e8; --sand:#e8dcc0; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#15140f; --card:#211f18; --ink:#f3efe6; --muted:#a59c8c; --line:#36322a; --accent:#e0584a; --shadow:0 6px 22px rgba(0,0,0,.45); --chip:#2c2922;
+    --map-ink:#9fc3e8; --lake:#2e4a5e; --sand:#3a3527; } }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:16px 14px 60px}
+  header.top{text-align:center;margin:6px 0 18px}
+  header.top h1{font-size:20px;margin:0 0 4px;letter-spacing:1px}
+  header.top p{margin:0;color:var(--muted);font-size:13px}
+  .focus{background:linear-gradient(135deg,var(--accent),#e08a3c);color:#fff;border-radius:18px;padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .focus .label{font-size:12px;opacity:.9;letter-spacing:1px}
+  .focus .evt{font-size:15px;font-weight:600;margin:6px 0 14px;line-height:1.45}
+  .focus .evt sub{font-size:11px;opacity:.85;font-weight:400}
+  .cd{display:flex;gap:8px}
+  .cd .u{flex:1;background:rgba(255,255,255,.16);border-radius:12px;padding:8px 4px;text-align:center}
+  .cd .n{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+  .cd .t{font-size:11px;opacity:.9;margin-top:2px}
+  section{margin-top:26px}
+  .eyebrow{font-size:11px;letter-spacing:3px;color:var(--muted);font-weight:600;margin:0}
+  .sec-big{font-size:20px;font-weight:800;margin:2px 0 12px;display:flex;align-items:baseline;gap:10px}
+  .sec-big .right{margin-left:auto;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:1px}
+  .sec-title{font-size:16px;font-weight:700;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  .sec-title .bar{width:4px;height:16px;background:var(--accent);border-radius:3px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+
+  /* 航班行程：登机牌卡片，横向滑动 */
+  .fstrip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;scrollbar-width:none}
+  .fstrip::-webkit-scrollbar{display:none}
+  .fcard{flex:0 0 86%;scroll-snap-align:center;background:#14323e;color:#f2f7f7;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+  .fc-head{display:flex;align-items:baseline;gap:10px;font-size:11px;letter-spacing:2px;opacity:.85}
+  .fc-air{letter-spacing:0;font-size:12px;opacity:.7}
+  .fc-route{display:flex;align-items:flex-start;margin-top:14px}
+  .fc-col{flex:1;min-width:0}
+  .code{font-size:32px;font-weight:800;letter-spacing:1px;line-height:1.1}
+  .city{font-size:12px;opacity:.75;margin-top:2px}
+  .dt{font-size:12px;margin-top:10px;line-height:1.5;opacity:.95}
+  .fdot{width:9px;height:9px;border:2px solid #7fd1c0;border-radius:50%;margin-top:8px}
+  .layover{font-size:11px;color:#ffb37a;margin-top:8px}
+  .layover em{font-style:normal;font-weight:700}
+  .laynext{font-size:11px;opacity:.8;margin-top:2px}
+  .fc-mid{flex:.7;text-align:center;padding-top:30px}
+  .fc-mid.sm{padding-top:6px}
+  .fno{font-size:11px;opacity:.75}
+  .farrow{color:#7fd1c0;font-size:18px}
+  .fc-cd{border-top:1px solid rgba(255,255,255,.14);margin-top:14px;padding-top:10px;font-size:12px;opacity:.85}
+  .fc-cd b{font-size:22px;font-weight:700;letter-spacing:1px;font-variant-numeric:tabular-nums;opacity:1}
+
+  /* 总览地图（插画风格） */
+  .mapbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);position:relative}
+  .mapbox svg{width:100%;height:auto;display:block}
+  .mapbg{fill:var(--chip);opacity:.55}
+  .mapframe{fill:none;stroke:var(--line);stroke-dasharray:3 5}
+  .route{fill:none;stroke:var(--map-ink);stroke-width:3;stroke-linecap:round;filter:url(#rough)}
+  .air{fill:none;stroke:var(--map-ink);stroke-width:2;stroke-dasharray:5 6;opacity:.75}
+  .plane{font-size:16px;fill:var(--map-ink)}
+  .airlabel{font-size:10.5px;fill:var(--map-ink);opacity:.8}
+  .stopbadge{fill:var(--map-ink)}
+  .stopnum{fill:var(--bg);font-size:12px;font-weight:700}
+  .stopname{fill:var(--ink);font-size:13px;font-weight:700}
+  .stopsub{fill:var(--muted);font-size:10.5px}
+  .shnode{fill:var(--map-ink)}
+  .lake{fill:var(--lake);opacity:.55}
+  .lakelabel{font-size:9.5px;fill:var(--map-ink);opacity:.7}
+  .desert{fill:var(--sand);opacity:.4}
+  .region{font-size:11px;letter-spacing:2px;fill:var(--muted)}
+  .compass{font-size:12px;fill:var(--muted);font-weight:600}
+  .mapnote{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+  .fs-btn{position:absolute;right:16px;bottom:34px;background:var(--ink);color:var(--bg);border:none;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600;box-shadow:var(--shadow);cursor:pointer}
+  #mapFS{position:fixed;inset:0;background:var(--bg);z-index:99;display:none;overflow:auto;padding:12px}
+  #mapFS.open{display:block}
+  #mapFS .close{position:fixed;top:14px;right:14px;background:var(--ink);color:var(--bg);border:none;border-radius:50%;width:38px;height:38px;font-size:16px;cursor:pointer;z-index:2}
+  #mapFS svg{width:100%;max-width:900px;margin:30px auto;display:block}
+
+  .row{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .tm{flex:0 0 62px;font-size:12px;color:var(--muted);text-align:right;padding-top:2px;font-variant-numeric:tabular-nums}
+  .row .ct{flex:1;font-size:14px}
+  .row .ct b{font-weight:600}
+  .row .sub{font-size:13px;color:var(--muted)}
+  .tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:6px;background:var(--chip);color:var(--muted);margin-left:6px;vertical-align:middle}
+  .place{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+  .place:active{opacity:.6}
+  .day{border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+  .day .hd{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none;list-style:none}
+  .day .hd::-webkit-details-marker{display:none}
+  .day .badge{width:30px;height:30px;border-radius:9px;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .day .meta{flex:1;display:flex;flex-direction:column}
+  .day .meta .d1{font-weight:700;font-size:15px}
+  .day .meta .d2{font-size:12px;color:var(--muted)}
+  .day .chev{color:var(--muted);font-size:12px}
+  .day[open] .chev{transform:rotate(180deg);display:inline-block}
+  .day .body{padding:4px 14px 14px}
+  .day .mini-map{background:var(--bg);border-radius:12px;padding:6px;margin:6px 0 10px}
+  .day .mini-map svg{width:100%;height:auto;display:block}
+  .dlabel{fill:var(--ink);font-size:11px}
+  .daymap-btn{display:block;width:100%;text-align:center;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:10px;font-size:13px;font-weight:600;margin:6px 0 12px}
+  .daymap-btn:active{opacity:.8}
+  .stay{font-size:12px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .stay b{color:var(--ink)}
+  .todo{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .todo:last-child{border-bottom:none}
+  .todo .dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:8px}
+  .tip{padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;display:flex;gap:8px}
+  .tip:last-child{border-bottom:none}
+  .placeholder{color:var(--muted);font-style:italic;font-size:13px;text-align:center;padding:18px 0}
+  footer{text-align:center;color:var(--muted);font-size:11px;margin-top:34px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><h1>新疆环线旅行手册</h1><p>2026.10.22 – 10.31 · 北疆+南疆大环线 · 10天9晚</p></header>
+
+  <div class="focus">
+    <div class="label">此刻关注 · NEXT</div>
+    <div class="evt">上海航空 FM7327 起飞 · 浦东T1 → 阿拉山口<br><sub>2026-10-22 08:15 (+08:00)</sub></div>
+    <div class="cd">
+      <div class="u"><div class="n" id="cd-d">--</div><div class="t">天</div></div>
+      <div class="u"><div class="n" id="cd-h">--</div><div class="t">时</div></div>
+      <div class="u"><div class="n" id="cd-m">--</div><div class="t">分</div></div>
+      <div class="u"><div class="n" id="cd-s">--</div><div class="t">秒</div></div>
+    </div>
+  </div>
+
+  <section>
+    <p class="eyebrow">THE WHOLE JOURNEY</p>
+    <h2 class="sec-big">本次旅程 <span class="right">10 DAYS</span></h2>
+    <div class="mapbox" id="mapbox"><svg id="ovmap" viewBox="0 0 900 560" role="img" aria-label="本次旅程路线总览"><rect x="6" y="6" width="888" height="548" rx="18" class="mapbg"/><rect x="14" y="14" width="872" height="532" rx="14" class="mapframe"/><ellipse cx="258" cy="140" rx="20" ry="8" class="lake"/><text class="lakelabel" x="258" y="126" text-anchor="middle">赛里木湖</text><ellipse cx="208" cy="368" rx="15" ry="6" class="lake"/><text class="lakelabel" x="208" y="354" text-anchor="middle">喀拉库勒湖</text><ellipse cx="430" cy="400" rx="80" ry="30" class="desert"/><text class="region" x="470" y="452" text-anchor="middle">TAKLAMAKAN · 塔克拉玛干</text><text class="region" x="560" y="100">XINJIANG · 新疆</text><text class="region" x="46" y="248">PAMIR · 帕米尔</text><text class="compass" x="856" y="52" text-anchor="middle">N ↑</text><path d="M 845 395 C 780 80, 300 10, 150 80" class="air"/><text class="plane" x="529" y="93" transform="rotate(-15 529 93)">✈</text><text class="airlabel" x="529" y="76" text-anchor="middle">10.22 上海出发</text><path d="M 430 195 C 468.3 215.8, 590.8 286.7, 660 320 C 729.2 353.3, 814.2 382.5, 845 395" class="air"/><text class="plane" x="548" y="262" transform="rotate(22 548 262)">✈</text><text class="airlabel" x="548" y="290" text-anchor="middle">10.31–11.01 返程</text><path d="M 150 80 C 160.8 85.8, 220.0 78.3, 215 115 C 210.0 151.7, 128.3 253.3, 120 300 C 111.7 346.7, 145.8 373.3, 165 395 C 184.2 416.7, 217.5 438.3, 235 430 C 252.5 421.7, 254.2 342.5, 270 345 C 285.8 347.5, 310.0 462.5, 330 445 C 350.0 427.5, 373.3 281.7, 390 240 C 406.7 198.3, 423.3 202.5, 430 195" class="route"/><circle cx="845" cy="395" r="5" class="shnode"/><text class="stopname" x="831" y="391" text-anchor="end">上海</text><text class="stopsub" x="831" y="407" text-anchor="end">10.22 出发 · 11.01 抵达</text><circle cx="150" cy="80" r="12" class="stopbadge"/><text class="stopnum" x="150" y="84" text-anchor="middle">1</text><text class="stopname" x="168" y="78">阿拉山口机场</text><text class="stopsub" x="168" y="94">D1 · 10.22 抵达 · 取车</text><circle cx="215" cy="115" r="12" class="stopbadge"/><text class="stopnum" x="215" y="119" text-anchor="middle">2</text><text class="stopname" x="233" y="113">赛里木湖</text><text class="stopsub" x="233" y="129">D1–D2 · 宿星空营地</text><circle cx="120" cy="300" r="12" class="stopbadge"/><text class="stopnum" x="120" y="304" text-anchor="middle">3</text><text class="stopname" x="138" y="298">喀什</text><text class="stopsub" x="138" y="314">D2–D3 · 宿古城</text><circle cx="165" cy="395" r="12" class="stopbadge"/><text class="stopnum" x="165" y="399" text-anchor="middle">4</text><text class="stopname" x="183" y="393">塔县</text><text class="stopsub" x="183" y="409">D4–D5 · 宿冰川营地</text><circle cx="235" cy="430" r="12" class="stopbadge"/><text class="stopnum" x="235" y="434" text-anchor="middle">5</text><text class="stopname" x="253" y="428">白沙湖</text><text class="stopsub" x="253" y="444">D5 · 宿湖畔</text><circle cx="270" cy="345" r="12" class="stopbadge"/><text class="stopnum" x="270" y="349" text-anchor="middle">6</text><text class="stopname" x="288" y="343">莎车</text><text class="stopsub" x="288" y="359">D6 · 宿县城</text><circle cx="330" cy="445" r="12" class="stopbadge"/><text class="stopnum" x="330" y="449" text-anchor="middle">7</text><text class="stopname" x="348" y="443">和田</text><text class="stopsub" x="348" y="459">D7 · 宿市区</text><circle cx="390" cy="240" r="12" class="stopbadge"/><text class="stopnum" x="390" y="244" text-anchor="middle">8</text><text class="stopname" x="408" y="238">阿拉尔</text><text class="stopsub" x="408" y="254">D8 · 宿市区</text><circle cx="430" cy="195" r="12" class="stopbadge"/><text class="stopnum" x="430" y="199" text-anchor="middle">9</text><text class="stopname" x="448" y="193">阿克苏</text><text class="stopsub" x="448" y="209">D9 · 宿机场旁</text><circle cx="660" cy="320" r="12" class="stopbadge"/><text class="stopnum" x="660" y="324" text-anchor="middle">10</text><text class="stopname" x="678" y="318">西安</text><text class="stopsub" x="678" y="334">中转 20h</text></svg><button class="fs-btn" id="fsBtn">⛶ 点按全屏查看</button><div class="mapnote">路线为行程示意，实际驾驶和步行请使用当天的高德地图导航</div></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">BOARDING</p>
+    <h2 class="sec-big">航班行程 <span class="right" id="fCounter">1 / 3</span></h2>
+    <div class="fstrip" id="fstrip"><div class="fcard"><div class="fc-head"><span>FLIGHT 01 / 03</span><span class="fc-air">上海航空</span></div><div class="fc-route"><div class="fc-col"><div class="code">PVG</div><div class="city">上海浦东 T1</div><div class="dt">10月22日<br><b>08:15 出发</b></div><div class="fdot"></div></div><div class="fc-mid"><div class="fno">FM7327</div><div class="farrow">⟶</div></div><div class="fc-col"><div class="code">BPL</div><div class="city">阿拉山口机场</div><div class="dt">10月22日<br><b>14:25 抵达</b></div><div class="fdot"></div></div></div><div class="fc-cd">距离起飞还剩<br><b id="fcd-1">—</b></div></div><div class="fcard"><div class="fc-head"><span>FLIGHT 02 / 03</span><span class="fc-air">华夏航空</span></div><div class="fc-route"><div class="fc-col"><div class="code">BPL</div><div class="city">阿拉山口机场</div><div class="dt">10月23日<br><b>20:45 出发</b></div><div class="fdot"></div></div><div class="fc-mid"><div class="fno">G52696</div><div class="farrow">⟶</div></div><div class="fc-col"><div class="code">KHG</div><div class="city">喀什徕宁 T2</div><div class="dt">10月24日<br><b>00:05 抵达</b></div><div class="fdot"></div></div></div><div class="fc-cd">距离起飞还剩<br><b id="fcd-2">—</b></div></div><div class="fcard"><div class="fc-head"><span>FLIGHT 03 / 03</span><span class="fc-air">四川航空 · 联程中转</span></div><div class="fc-route"><div class="fc-col"><div class="code">AKU</div><div class="city">阿克苏红旗坡 T2</div><div class="dt">10月31日<br><b>17:15 出发</b></div><div class="fdot"></div></div><div class="fc-mid sm"><div class="fno">3U8278</div><div class="farrow">⟶</div></div><div class="fc-col"><div class="code">XIY</div><div class="city">西安咸阳 T5</div><div class="dt">10月31日<br><b>21:15 抵达</b></div><div class="fdot"></div><div class="layover">中转 <em>20小时10分</em></div><div class="laynext">11月01日 17:25 起飞</div></div><div class="fc-mid sm"><div class="fno">3U6101</div><div class="farrow">⟶</div></div><div class="fc-col"><div class="code">PVG</div><div class="city">上海浦东 T2</div><div class="dt">11月01日<br><b>19:40 抵达</b></div><div class="fdot"></div></div></div><div class="fc-cd">距离起飞还剩<br><b id="fcd-3">—</b></div></div></div>
+  </section>
+
+  <section><h2 class="sec-title"><span class="bar"></span>已确认 · 租车 / 酒店 / 门票</h2>
+    <div class="card"><div class="row"><div class="tm"></div><div class="ct"><b>租车自驾</b><br><span class="sub">D1–D2 · 博乐阿拉山口机场取还<br>机场取车游赛里木湖，D2 还车后乘机赴喀什</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b>自驾（行程推断）</b><br><span class="sub">D4–D10 · 喀什→塔县→莎车→和田→阿拉尔→阿克苏<br>跨城自驾，租车订单待补充</span></div></div></div>
+    <div class="card" style="margin-top:12px"><div class="row"><div class="tm">10.22<br>↓<br>10.23</div><div class="ct"><b>赛里木湖潮克星空营地</b><br><span class="sub">赛里木湖 · 赛里木湖景区内<br>房型：星空营地</span></div></div><div class="row"><div class="tm">10.23<br>↓<br>10.25</div><div class="ct"><b>水门里·秘境·Haven客栈（喀什古城店）</b><br><span class="sub">喀什 · 喀什市亚瓦格路江阔尔干6组16号<br>房型：45㎡ 1居1床1卫 · 宜住2人</span></div></div><div class="row"><div class="tm">10.25<br>↓<br>10.26</div><div class="ct"><b>遇见冰川Camp野奢帐篷观雪山度假美宿</b><br><span class="sub">塔县 · 塔什库尔干中巴友谊路<br>房型：野奢帐篷</span></div></div><div class="row"><div class="tm">10.26<br>↓<br>10.27</div><div class="ct"><b>在云端星空营地民宿（白沙湖店）</b><br><span class="sub">白沙湖 · 白沙湖景区<br>房型：营地民宿</span></div></div><div class="row"><div class="tm">10.27<br>↓<br>10.28</div><div class="ct"><b>锦江之星酒店（莎车县金海润泽园店）</b><br><span class="sub">莎车 · 莎车县叶尔羌街道喀和路金海润泽园小区1号商业楼<br>房型：标准大床房 · 宜住2人</span></div></div><div class="row"><div class="tm">10.28<br>↓<br>10.29</div><div class="ct"><b>Yunik-和田火车站电竞酒店</b><br><span class="sub">和田 · 和田市乌鲁木齐北路315号<br>房型：电竞四人间 · 宜住4人</span></div></div><div class="row"><div class="tm">10.29<br>↓<br>10.30</div><div class="ct"><b>亚悦酒店（阿拉尔市文化馆店）</b><br><span class="sub">阿拉尔 · 阿拉尔市文化馆店<br>房型：—</span></div></div><div class="row"><div class="tm">10.30<br>↓<br>10.31</div><div class="ct"><b>竺朵沐锦美宿（阿克苏红旗坡机场店）</b><br><span class="sub">阿克苏 · 温宿县复习大道温宿故里7号楼<br>房型：70㎡ 1居3床1卫 · 宜住6人</span></div></div></div>
+    <div class="card" style="margin-top:12px"><div class="placeholder">门票信息待补充（将陆续添加）</div></div>
+  </section>
+
+  <section><h2 class="sec-title"><span class="bar"></span>逐日行程</h2><details class="day"><summary class="hd"><span class="badge" style="background:#e6194B">1</span><span class="meta"><span class="d1">D1 · 2026-10-22 周四</span><span class="d2">博乐 / 赛里木湖</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D1当日路线"><polyline points="46.0,75 320.0,75 594.0,75" fill="none" stroke="#e6194B" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#e6194B" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">博乐阿拉山口机场</text><circle cx="320.0" cy="75" r="7" fill="#e6194B" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="320.0" y="59" text-anchor="middle">赛里木湖东门</text><circle cx="594.0" cy="75" r="7" fill="#e6194B" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">潮克星空营地</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=82.35,45.17,%E5%8D%9A%E4%B9%90%E9%98%BF%E6%8B%89%E5%B1%B1%E5%8F%A3%E6%9C%BA%E5%9C%BA&to=81.15,44.62,%E6%BD%AE%E5%85%8B%E6%98%9F%E7%A9%BA%E8%90%A5%E5%9C%B0&waypoints=81.15,44.6,%E8%B5%9B%E9%87%8C%E6%9C%A8%E6%B9%96%E4%B8%9C%E9%97%A8&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm">14:25 抵达 / 取车</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=82.35,45.17&name=%E5%8D%9A%E4%B9%90%E9%98%BF%E6%8B%89%E5%B1%B1%E5%8F%A3%E6%9C%BA%E5%9C%BA&src=xjtrip&coordinate=gaode&callnative=1">博乐阿拉山口机场</a></b><span class="tag">交通</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=81.15,44.6&name=%E8%B5%9B%E9%87%8C%E6%9C%A8%E6%B9%96%E4%B8%9C%E9%97%A8&src=xjtrip&coordinate=gaode&callnative=1">赛里木湖东门</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=81.15,44.62&name=%E6%BD%AE%E5%85%8B%E6%98%9F%E7%A9%BA%E8%90%A5%E5%9C%B0&src=xjtrip&coordinate=gaode&callnative=1">潮克星空营地</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>赛里木湖潮克星空营地</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#3cb44b">2</span><span class="meta"><span class="d1">D2 · 2026-10-23 周五</span><span class="d2">赛里木湖 → 喀什</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D2当日路线"><polyline points="46.0,75 228.7,75 411.3,75 594.0,75" fill="none" stroke="#3cb44b" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#3cb44b" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">赛里木湖环湖（点…</text><circle cx="228.7" cy="75" r="7" fill="#3cb44b" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="228.7" y="59" text-anchor="middle">博乐阿拉山口机场…</text><circle cx="411.3" cy="75" r="7" fill="#3cb44b" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="411.3" y="59" text-anchor="middle">喀什徕宁机场 T…</text><circle cx="594.0" cy="75" r="7" fill="#3cb44b" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">喀什古城住宿</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=81.1,44.58,%E8%B5%9B%E9%87%8C%E6%9C%A8%E6%B9%96%E7%8E%AF%E6%B9%96%EF%BC%88%E7%82%B9%E5%B0%86%E5%8F%B0%E3%80%81%E4%BA%B2%E6%B0%B4%E6%BB%A9%EF%BC%89&to=75.99,39.47,%E5%96%80%E4%BB%80%E5%8F%A4%E5%9F%8E%E4%BD%8F%E5%AE%BF&waypoints=82.35,45.17,%E5%8D%9A%E4%B9%90%E9%98%BF%E6%8B%89%E5%B1%B1%E5%8F%A3%E6%9C%BA%E5%9C%BA%20%E8%BF%98%E8%BD%A6;82.35,45.17,%E5%96%80%E4%BB%80%E5%BE%95%E5%AE%81%E6%9C%BA%E5%9C%BA%20T2&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=81.1,44.58&name=%E8%B5%9B%E9%87%8C%E6%9C%A8%E6%B9%96%E7%8E%AF%E6%B9%96%EF%BC%88%E7%82%B9%E5%B0%86%E5%8F%B0%E3%80%81%E4%BA%B2%E6%B0%B4%E6%BB%A9%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">赛里木湖环湖（点将台、亲水滩）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm">还车</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=82.35,45.17&name=%E5%8D%9A%E4%B9%90%E9%98%BF%E6%8B%89%E5%B1%B1%E5%8F%A3%E6%9C%BA%E5%9C%BA%20%E8%BF%98%E8%BD%A6&src=xjtrip&coordinate=gaode&callnative=1">博乐阿拉山口机场 还车</a></b><span class="tag">交通</span></div></div><div class="row"><div class="tm">00:05+1 抵达</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=82.35,45.17&name=%E5%96%80%E4%BB%80%E5%BE%95%E5%AE%81%E6%9C%BA%E5%9C%BA%20T2&src=xjtrip&coordinate=gaode&callnative=1">喀什徕宁机场 T2</a></b><span class="tag">交通</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.99,39.47&name=%E5%96%80%E4%BB%80%E5%8F%A4%E5%9F%8E%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">喀什古城住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>水门里·秘境·Haven客栈（喀什古城）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#4363d8">3</span><span class="meta"><span class="d1">D3 · 2026-10-24 周六</span><span class="d2">喀什老城</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D3当日路线"><polyline points="46.0,75 228.7,75 411.3,75 594.0,75" fill="none" stroke="#4363d8" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#4363d8" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">喀什古城（开城仪…</text><circle cx="228.7" cy="75" r="7" fill="#4363d8" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="228.7" y="59" text-anchor="middle">喀什大巴扎</text><circle cx="411.3" cy="75" r="7" fill="#4363d8" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="411.3" y="59" text-anchor="middle">百年老茶馆</text><circle cx="594.0" cy="75" r="7" fill="#4363d8" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">汗巴扎夜市</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=75.993,39.467,%E5%96%80%E4%BB%80%E5%8F%A4%E5%9F%8E%EF%BC%88%E5%BC%80%E5%9F%8E%E4%BB%AA%E5%BC%8F%E3%80%81%E8%89%BE%E6%8F%90%E5%B0%95%E5%B0%94%E6%B8%85%E7%9C%9F%E5%AF%BA%EF%BC%89&to=75.97,39.46,%E6%B1%97%E5%B7%B4%E6%89%8E%E5%A4%9C%E5%B8%82&waypoints=75.97,39.47,%E5%96%80%E4%BB%80%E5%A4%A7%E5%B7%B4%E6%89%8E;75.985,39.465,%E7%99%BE%E5%B9%B4%E8%80%81%E8%8C%B6%E9%A6%86&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.993,39.467&name=%E5%96%80%E4%BB%80%E5%8F%A4%E5%9F%8E%EF%BC%88%E5%BC%80%E5%9F%8E%E4%BB%AA%E5%BC%8F%E3%80%81%E8%89%BE%E6%8F%90%E5%B0%95%E5%B0%94%E6%B8%85%E7%9C%9F%E5%AF%BA%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">喀什古城（开城仪式、艾提尕尔清真寺）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.97,39.47&name=%E5%96%80%E4%BB%80%E5%A4%A7%E5%B7%B4%E6%89%8E&src=xjtrip&coordinate=gaode&callnative=1">喀什大巴扎</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.985,39.465&name=%E7%99%BE%E5%B9%B4%E8%80%81%E8%8C%B6%E9%A6%86&src=xjtrip&coordinate=gaode&callnative=1">百年老茶馆</a></b><span class="tag">餐饮</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.97,39.46&name=%E6%B1%97%E5%B7%B4%E6%89%8E%E5%A4%9C%E5%B8%82&src=xjtrip&coordinate=gaode&callnative=1">汗巴扎夜市</a></b><span class="tag">餐饮</span></div></div><div class="stay">🏠 当晚住宿：<b>水门里·秘境·Haven客栈（喀什古城）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#f58231">4</span><span class="meta"><span class="d1">D4 · 2026-10-25 周日</span><span class="d2">喀什 → 塔县</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D4当日路线"><polyline points="46.0,75 320.0,75 594.0,75" fill="none" stroke="#f58231" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#f58231" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">喀拉库勒湖</text><circle cx="320.0" cy="75" r="7" fill="#f58231" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="320.0" y="59" text-anchor="middle">慕士塔格冰川公园</text><circle cx="594.0" cy="75" r="7" fill="#f58231" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">塔县住宿</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=75.1,38.45,%E5%96%80%E6%8B%89%E5%BA%93%E5%8B%92%E6%B9%96&to=75.23,38.18,%E5%A1%94%E5%8E%BF%E4%BD%8F%E5%AE%BF&waypoints=75.1,38.62,%E6%85%95%E5%A3%AB%E5%A1%94%E6%A0%BC%E5%86%B0%E5%B7%9D%E5%85%AC%E5%9B%AD&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.1,38.45&name=%E5%96%80%E6%8B%89%E5%BA%93%E5%8B%92%E6%B9%96&src=xjtrip&coordinate=gaode&callnative=1">喀拉库勒湖</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.1,38.62&name=%E6%85%95%E5%A3%AB%E5%A1%94%E6%A0%BC%E5%86%B0%E5%B7%9D%E5%85%AC%E5%9B%AD&src=xjtrip&coordinate=gaode&callnative=1">慕士塔格冰川公园</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.23,38.18&name=%E5%A1%94%E5%8E%BF%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">塔县住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>遇见冰川Camp野奢帐篷（塔县）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#911eb4">5</span><span class="meta"><span class="d1">D5 · 2026-10-26 周一</span><span class="d2">塔县周边</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D5当日路线"><polyline points="46.0,75 228.7,75 411.3,75 594.0,75" fill="none" stroke="#911eb4" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#911eb4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">盘龙古道入口</text><circle cx="228.7" cy="75" r="7" fill="#911eb4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="228.7" y="59" text-anchor="middle">班迪尔蓝湖</text><circle cx="411.3" cy="75" r="7" fill="#911eb4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="411.3" y="59" text-anchor="middle">塔合曼湿地</text><circle cx="594.0" cy="75" r="7" fill="#911eb4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">白沙湖北岸</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=75.3,38.3,%E7%9B%98%E9%BE%99%E5%8F%A4%E9%81%93%E5%85%A5%E5%8F%A3&to=74.95,38.55,%E7%99%BD%E6%B2%99%E6%B9%96%E5%8C%97%E5%B2%B8&waypoints=75.4,38.45,%E7%8F%AD%E8%BF%AA%E5%B0%94%E8%93%9D%E6%B9%96;75.25,38.4,%E5%A1%94%E5%90%88%E6%9B%BC%E6%B9%BF%E5%9C%B0&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.3,38.3&name=%E7%9B%98%E9%BE%99%E5%8F%A4%E9%81%93%E5%85%A5%E5%8F%A3&src=xjtrip&coordinate=gaode&callnative=1">盘龙古道入口</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.4,38.45&name=%E7%8F%AD%E8%BF%AA%E5%B0%94%E8%93%9D%E6%B9%96&src=xjtrip&coordinate=gaode&callnative=1">班迪尔蓝湖</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=75.25,38.4&name=%E5%A1%94%E5%90%88%E6%9B%BC%E6%B9%BF%E5%9C%B0&src=xjtrip&coordinate=gaode&callnative=1">塔合曼湿地</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=74.95,38.55&name=%E7%99%BD%E6%B2%99%E6%B9%96%E5%8C%97%E5%B2%B8&src=xjtrip&coordinate=gaode&callnative=1">白沙湖北岸</a></b><span class="tag">景点</span></div></div><div class="stay">🏠 当晚住宿：<b>在云端星空营地民宿（白沙湖）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#42d4d4">6</span><span class="meta"><span class="d1">D6 · 2026-10-27 周二</span><span class="d2">塔县 → 木吉火山 → 莎车</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D6当日路线"><polyline points="46.0,75 320.0,75 594.0,75" fill="none" stroke="#42d4d4" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#42d4d4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">白沙湖南岸</text><circle cx="320.0" cy="75" r="7" fill="#42d4d4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="320.0" y="59" text-anchor="middle">木吉火山口（帕米…</text><circle cx="594.0" cy="75" r="7" fill="#42d4d4" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">莎车县城住宿</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=74.95,38.5,%E7%99%BD%E6%B2%99%E6%B9%96%E5%8D%97%E5%B2%B8&to=77.27,38.43,%E8%8E%8E%E8%BD%A6%E5%8E%BF%E5%9F%8E%E4%BD%8F%E5%AE%BF&waypoints=74.35,38.7,%E6%9C%A8%E5%90%89%E7%81%AB%E5%B1%B1%E5%8F%A3%EF%BC%88%E5%B8%95%E7%B1%B3%E5%B0%94%E4%B9%8B%E7%9C%BC%EF%BC%89&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=74.95,38.5&name=%E7%99%BD%E6%B2%99%E6%B9%96%E5%8D%97%E5%B2%B8&src=xjtrip&coordinate=gaode&callnative=1">白沙湖南岸</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=74.35,38.7&name=%E6%9C%A8%E5%90%89%E7%81%AB%E5%B1%B1%E5%8F%A3%EF%BC%88%E5%B8%95%E7%B1%B3%E5%B0%94%E4%B9%8B%E7%9C%BC%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">木吉火山口（帕米尔之眼）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=77.27,38.43&name=%E8%8E%8E%E8%BD%A6%E5%8E%BF%E5%9F%8E%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">莎车县城住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>锦江之星酒店（莎车县金海润泽园店）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#f032e6">7</span><span class="meta"><span class="d1">D7 · 2026-10-28 周三</span><span class="d2">莎车 → 泽普 → 和田</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D7当日路线"><polyline points="46.0,75 594.0,75" fill="none" stroke="#f032e6" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#f032e6" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">泽普金胡杨国家森…</text><circle cx="594.0" cy="75" r="7" fill="#f032e6" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">和田市区住宿</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=77.22,38.18,%E6%B3%BD%E6%99%AE%E9%87%91%E8%83%A1%E6%9D%A8%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&to=79.92,37.11,%E5%92%8C%E7%94%B0%E5%B8%82%E5%8C%BA%E4%BD%8F%E5%AE%BF&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=77.22,38.18&name=%E6%B3%BD%E6%99%AE%E9%87%91%E8%83%A1%E6%9D%A8%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&src=xjtrip&coordinate=gaode&callnative=1">泽普金胡杨国家森林公园</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=79.92,37.11&name=%E5%92%8C%E7%94%B0%E5%B8%82%E5%8C%BA%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">和田市区住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>Yunik-和田火车站电竞酒店</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#008080">8</span><span class="meta"><span class="d1">D8 · 2026-10-29 周四</span><span class="d2">和田 → 沙漠公路 → 阿拉尔</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D8当日路线"><polyline points="46.0,75 320.0,75 594.0,75" fill="none" stroke="#008080" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#008080" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">塔克拉玛干沙漠公…</text><circle cx="320.0" cy="75" r="7" fill="#008080" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="320.0" y="59" text-anchor="middle">沙漠公路沿途胡杨…</text><circle cx="594.0" cy="75" r="7" fill="#008080" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">阿拉尔住宿</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=79.95,37.05,%E5%A1%94%E5%85%8B%E6%8B%89%E7%8E%9B%E5%B9%B2%E6%B2%99%E6%BC%A0%E5%85%AC%E8%B7%AF%EF%BC%88%E5%92%8C%E7%94%B0%E5%85%A5%E5%8F%A3%EF%BC%89&to=81.27,40.54,%E9%98%BF%E6%8B%89%E5%B0%94%E4%BD%8F%E5%AE%BF&waypoints=79.95,37.05,%E6%B2%99%E6%BC%A0%E5%85%AC%E8%B7%AF%E6%B2%BF%E9%80%94%E8%83%A1%E6%9D%A8%E3%80%81%E6%B2%99%E4%B8%98%E8%A7%82%E6%99%AF%E7%82%B9&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=79.95,37.05&name=%E5%A1%94%E5%85%8B%E6%8B%89%E7%8E%9B%E5%B9%B2%E6%B2%99%E6%BC%A0%E5%85%AC%E8%B7%AF%EF%BC%88%E5%92%8C%E7%94%B0%E5%85%A5%E5%8F%A3%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">塔克拉玛干沙漠公路（和田入口）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=79.95,37.05&name=%E6%B2%99%E6%BC%A0%E5%85%AC%E8%B7%AF%E6%B2%BF%E9%80%94%E8%83%A1%E6%9D%A8%E3%80%81%E6%B2%99%E4%B8%98%E8%A7%82%E6%99%AF%E7%82%B9&src=xjtrip&coordinate=gaode&callnative=1">沙漠公路沿途胡杨、沙丘观景点</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=81.27,40.54&name=%E9%98%BF%E6%8B%89%E5%B0%94%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">阿拉尔住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>亚悦酒店（阿拉尔市文化馆店）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#9A6324">9</span><span class="meta"><span class="d1">D9 · 2026-10-30 周五</span><span class="d2">阿拉尔 → 温宿大峡谷 → 阿克苏</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D9当日路线"><polyline points="46.0,75 594.0,75" fill="none" stroke="#9A6324" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#9A6324" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">托木尔大峡谷（温…</text><circle cx="594.0" cy="75" r="7" fill="#9A6324" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">阿克苏（温宿县）…</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=80.35,41.85,%E6%89%98%E6%9C%A8%E5%B0%94%E5%A4%A7%E5%B3%A1%E8%B0%B7%EF%BC%88%E6%B8%A9%E5%AE%BF%E5%A4%A7%E5%B3%A1%E8%B0%B7%EF%BC%89&to=80.27,41.17,%E9%98%BF%E5%85%8B%E8%8B%8F%EF%BC%88%E6%B8%A9%E5%AE%BF%E5%8E%BF%EF%BC%89%E4%BD%8F%E5%AE%BF&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=80.35,41.85&name=%E6%89%98%E6%9C%A8%E5%B0%94%E5%A4%A7%E5%B3%A1%E8%B0%B7%EF%BC%88%E6%B8%A9%E5%AE%BF%E5%A4%A7%E5%B3%A1%E8%B0%B7%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">托木尔大峡谷（温宿大峡谷）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=80.27,41.17&name=%E9%98%BF%E5%85%8B%E8%8B%8F%EF%BC%88%E6%B8%A9%E5%AE%BF%E5%8E%BF%EF%BC%89%E4%BD%8F%E5%AE%BF&src=xjtrip&coordinate=gaode&callnative=1">阿克苏（温宿县）住宿</a></b><span class="tag">住宿</span></div></div><div class="stay">🏠 当晚住宿：<b>竺朵沐锦美宿（阿克苏红旗坡机场店）</b></div></div></details><details class="day"><summary class="hd"><span class="badge" style="background:#888888">10</span><span class="meta"><span class="d1">D10 · 2026-10-31 周六</span><span class="d2">阿克苏 → 上海</span></span><span class="chev">▼ 当日地图</span></summary><div class="body"><div class="mini-map"><svg viewBox="0 0 640 150" aria-label="D10当日路线"><polyline points="46.0,75 228.7,75 411.3,75 594.0,75" fill="none" stroke="#888888" stroke-width="3" stroke-linecap="round"/><circle cx="46.0" cy="75" r="7" fill="#888888" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="46.0" y="59" text-anchor="middle">阿克苏市区（自由…</text><circle cx="228.7" cy="75" r="7" fill="#888888" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="228.7" y="59" text-anchor="middle">红旗坡机场 T2…</text><circle cx="411.3" cy="75" r="7" fill="#888888" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="411.3" y="59" text-anchor="middle">西安咸阳机场 T…</text><circle cx="594.0" cy="75" r="7" fill="#888888" stroke="var(--card)" stroke-width="2"/><text class="dlabel" x="594.0" y="59" text-anchor="middle">上海浦东 T2 …</text></svg></div><a class="daymap-btn" href="https://uri.amap.com/navigation?from=80.27,41.17,%E9%98%BF%E5%85%8B%E8%8B%8F%E5%B8%82%E5%8C%BA%EF%BC%88%E8%87%AA%E7%94%B1%E6%B4%BB%E5%8A%A8%EF%BC%89&to=121.805,31.144,%E4%B8%8A%E6%B5%B7%E6%B5%A6%E4%B8%9C%20T2%20%E6%8A%B5%E8%BE%BE&waypoints=80.27,41.17,%E7%BA%A2%E6%97%97%E5%9D%A1%E6%9C%BA%E5%9C%BA%20T2%20%E5%87%BA%E5%8F%91;108.94,34.34,%E8%A5%BF%E5%AE%89%E5%92%B8%E9%98%B3%E6%9C%BA%E5%9C%BA%20T5%20%E4%B8%AD%E8%BD%AC&mode=car&coordinate=gaode&callnative=1&src=xjtrip">🧭 一键打开全天多点导航</a><div class="row"><div class="tm"></div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=80.27,41.17&name=%E9%98%BF%E5%85%8B%E8%8B%8F%E5%B8%82%E5%8C%BA%EF%BC%88%E8%87%AA%E7%94%B1%E6%B4%BB%E5%8A%A8%EF%BC%89&src=xjtrip&coordinate=gaode&callnative=1">阿克苏市区（自由活动）</a></b><span class="tag">景点</span></div></div><div class="row"><div class="tm">17:15 起飞</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=80.27,41.17&name=%E7%BA%A2%E6%97%97%E5%9D%A1%E6%9C%BA%E5%9C%BA%20T2%20%E5%87%BA%E5%8F%91&src=xjtrip&coordinate=gaode&callnative=1">红旗坡机场 T2 出发</a></b><span class="tag">交通</span></div></div><div class="row"><div class="tm">21:15 抵达</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=108.94,34.34&name=%E8%A5%BF%E5%AE%89%E5%92%B8%E9%98%B3%E6%9C%BA%E5%9C%BA%20T5%20%E4%B8%AD%E8%BD%AC&src=xjtrip&coordinate=gaode&callnative=1">西安咸阳机场 T5 中转</a></b><span class="tag">交通</span></div></div><div class="row"><div class="tm">11-01 19:40</div><div class="ct"><b><a class="place" href="https://uri.amap.com/marker?position=121.805,31.144&name=%E4%B8%8A%E6%B5%B7%E6%B5%A6%E4%B8%9C%20T2%20%E6%8A%B5%E8%BE%BE&src=xjtrip&coordinate=gaode&callnative=1">上海浦东 T2 抵达</a></b><span class="tag">交通</span></div></div><div class="stay" style="color:var(--muted)">🏁 行程结束日（返程）</div></div></details></section>
+
+  <section><h2 class="sec-title"><span class="bar"></span>待办清单</h2><div class="card"><div class="todo"><span class="dot"></span><span>确认南疆段租车订单（车型 / 取还车点 / 时间）</span></div><div class="todo"><span class="dot"></span><span>办理边防通行证（塔县、木吉火山口需通行）</span></div><div class="todo"><span class="dot"></span><span>机票值机：FM7327 / G52696 / 3U8278</span></div><div class="todo"><span class="dot"></span><span>预约川航西安中转免费住宿权益（停留约20h）</span></div><div class="todo"><span class="dot"></span><span>景区门票预订（门票信息补充后细化）</span></div><div class="todo"><span class="dot"></span><span>提前下载新疆离线地图（沿途信号弱）</span></div><div class="todo"><span class="dot"></span><span>保暖与高反装备：羽绒服、红景天、防晒</span></div></div></section>
+
+  <section><h2 class="sec-title"><span class="bar"></span>实用贴士</h2><div class="card"><div class="tip"><span class="ic">🕐</span><span>时差：新疆用北京时间，但日照比内地晚约2小时，作息可相应后移。</span></div><div class="tip"><span class="ic">🌡️</span><span>气温：10月下旬帕米尔高原夜间接近0℃，备羽绒服；沙漠段白天仍暖。</span></div><div class="tip"><span class="ic">⛰️</span><span>海拔：塔县 / 慕士塔格一带3000–4000m，注意高反，避免剧烈活动。</span></div><div class="tip"><span class="ic">🧭</span><span>导航：点击地点直接唤起高德地图；弱信号处提前离线。</span></div><div class="tip"><span class="ic">🛂</span><span>边防：前往塔县、木吉需在喀什办理《边境管理区通行证》。</span></div><div class="tip"><span class="ic">🚗</span><span>驾驶：南疆路途长，日均行车3–6小时，注意加油站与限速。</span></div></div></section>
+
+  <footer>新疆环线 · 离线可用 · 点击地点唤起高德导航</footer>
+</div>
+
+<div id="mapFS"><button class="close" id="fsClose">✕</button><div id="mapClone"></div></div>
+
+<script>
+/* 仅增强：倒计时 / 航班滑动计数 / 地图全屏（内容已静态直出，脚本失败不影响阅读） */
+const EVENTS=[{"dt":"2026-10-22T08:15:00+08:00","label":"上海航空 FM7327 起飞 · 浦东T1 → 阿拉山口"},{"dt":"2026-10-22T14:25:00+08:00","label":"抵达博乐阿拉山口机场 · 取车"},{"dt":"2026-10-23T20:45:00+08:00","label":"华夏航空 G52696 起飞 · 阿拉山口 → 喀什"},{"dt":"2026-10-24T00:05:00+08:00","label":"抵达喀什徕宁机场 T2"},{"dt":"2026-10-31T17:15:00+08:00","label":"四川航空 3U8278 起飞 · 阿克苏 → 西安"},{"dt":"2026-11-01T19:40:00+08:00","label":"抵沪 · 浦东T2 · 行程结束"}];
+const FLIGHT_CD=["2026-10-22T08:15:00+08:00","2026-10-23T20:45:00+08:00","2026-10-31T17:15:00+08:00"];
+
+function fmtDiff(ms){
+  const d=Math.floor(ms/86400000); ms-=d*86400000;
+  const h=Math.floor(ms/3600000); ms-=h*3600000;
+  const m=Math.floor(ms/60000); ms-=m*60000;
+  const s=Math.floor(ms/1000);
+  const pad=x=>String(x).padStart(2,'0');
+  return d+'天 '+pad(h)+':'+pad(m)+':'+pad(s);
+}
+function tick(){
+  const now=new Date();
+  let next=null;
+  for(const e of EVENTS){ if(new Date(e.dt)>now){ next=e; break; } }
+  const evt=document.getElementById('focusEvt');
+  if(!next){ evt.innerHTML='行程已结束 · 一路平安'; ['cd-d','cd-h','cd-m','cd-s'].forEach(i=>document.getElementById(i).textContent='00'); }
+  else{
+    const dt=new Date(next.dt);
+    evt.innerHTML=next.label+'<br><sub>'+dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0')+' '+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0')+' (+08:00)</sub>';
+    let diff=new Date(next.dt)-now;
+    const d=Math.floor(diff/86400000); diff-=d*86400000;
+    const h=Math.floor(diff/3600000); diff-=h*3600000;
+    const m=Math.floor(diff/60000); diff-=m*60000;
+    const s=Math.floor(diff/1000);
+    const pad=x=>String(x).padStart(2,'0');
+    document.getElementById('cd-d').textContent=d;
+    document.getElementById('cd-h').textContent=pad(h);
+    document.getElementById('cd-m').textContent=pad(m);
+    document.getElementById('cd-s').textContent=pad(s);
+  }
+  /* 每张航班卡的倒计时 */
+  FLIGHT_CD.forEach((dt,i)=>{
+    const el=document.getElementById('fcd-'+(i+1));
+    if(!el) return;
+    const diff=new Date(dt)-now;
+    el.textContent = diff>0 ? fmtDiff(diff) : '已起飞';
+  });
+}
+
+/* 航班卡片滑动 → 更新 1/3 计数 */
+const strip=document.getElementById('fstrip');
+const counter=document.getElementById('fCounter');
+if(strip){
+  let raf=null;
+  strip.addEventListener('scroll',()=>{
+    if(raf) return;
+    raf=requestAnimationFrame(()=>{
+      raf=null;
+      const card=strip.querySelector('.fcard');
+      if(!card) return;
+      const w=card.offsetWidth+12;
+      const idx=Math.min(FCARDS.length,Math.max(1,Math.round(strip.scrollLeft/w)+1));
+      counter.textContent=idx+' / '+FCARDS.length;
+    });
+  },{passive:true});
+}
+
+/* 地图全屏 */
+const fsBtn=document.getElementById('fsBtn'), fsWrap=document.getElementById('mapFS'), fsClose=document.getElementById('fsClose');
+if(fsBtn){
+  fsBtn.addEventListener('click',()=>{
+    document.getElementById('mapClone').innerHTML=document.getElementById('ovmap').outerHTML;
+    fsWrap.classList.add('open');
+  });
+  fsClose.addEventListener('click',()=>fsWrap.classList.remove('open'));
+  fsWrap.addEventListener('click',e=>{ if(e.target===fsWrap) fsWrap.classList.remove('open'); });
+}
+
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
